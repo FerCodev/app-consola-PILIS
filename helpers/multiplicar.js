@@ -2,21 +2,23 @@
 const fs = require('fs');
 const colors = require('colors');
 
-const crearArchivo = async(base = 5, listar = false) => {
+const crearArchivo = async(base = 5, listar = false, hasta = 10) => {
 
     try {
         
         let salida ='';
-    
-        for(let i = 1; i <= 10; i++){
+        let consola = '';
+
+        for(let i = 1; i <= hasta; i++){
             // backslash  \n "agrega un salto de linea"
-            salida += `${ colors.brightCyan(base) } ${colors.brightRed('X')} ${ colors.brightCyan(i) } = ${ colors.brightRed(base * i) }\n`
+            salida += `${ base } X ${ i } = ${ base * i }\n`
+            consola += `${ colors.brightCyan(base) } ${colors.brightRed('X')} ${ colors.brightCyan(i) } = ${ colors.brightRed(base * i) }\n`
         }
         if( listar ){
             console.log('====================='.brightGreen)
             console.log('   Tabla del:'.brightRed, base)
             console.log('====================='.brightGreen)
-            console.log(salida);
+            console.log(consola);
         }
 
         fs.writeFileSync( `tabla-${base}.txt`, salida)
@@ -27,7 +29,6 @@ const crearArchivo = async(base = 5, listar = false) => {
         throw err;
     }
 }
-//SEGUIR EN EL MINUTO 1:20 DEL VIDEO 11 DE LA SECCION 40
 // const crearArchivo = (base = 5) => {
     
 //     return new Promise( (resolve, reject) =>{
