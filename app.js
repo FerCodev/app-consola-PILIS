@@ -1,24 +1,25 @@
-const fs = require('fs');
 
+const {crearArchivo} = require('./helpers/multiplicar')
 
+const argv = require('yargs').argv
 
 console.clear()
-console.log('=====================')
-console.log('     Tabla del: 5    ')
-console.log('=====================')
+//con estas dos lineas accedemos a los procesos de 
+//consola y su posicion (hay que optimizar)
+// const [,,arg3= 'base=5'] = process.argv
+// const [ ,base = 5 ] = arg3.split('=')
 
-const base = 2;
-let salida ='';
-for(let i = 1; i <= 10; i++){
-    // backslash  \n "agrega un salto de linea"
-    salida += `${ base } X ${ i } = ${ base * i }\n`
-}
 
-console.log(salida);
+console.log( process.argv )
+console.log( argv )
 
-fs.writeFile( `tabla-${base}.txt`, salida, (err)=>{
-    if(err) throw err
-    console.log(`Tabla-${base}.txt Creado`)
-} )
+console.log( 'base yargs:', argv.base)
 
-//console.log(salida)
+
+
+
+// const base = 5;
+
+// crearArchivo( base )
+//     .then( nombreArchivo => console.log(nombreArchivo, 'creado'))
+//     .catch( err => console.log(err));
